@@ -1,5 +1,7 @@
 # IFSF Security Fields Processor
 
+[![build](https://github.com/alessandrozamberletti/ifsf-h2h-security/workflows/build/badge.svg)](https://github.com/alessandrozamberletti/ifsf-h2h-security/actions) [![codecov](https://codecov.io/gh/alessandrozamberletti/ifsf-h2h-security/branch/main/graph/badge.svg?token=154BV4DN74)](https://codecov.io/gh/alessandrozamberletti/ifsf-h2h-security)
+
 Compute security fields for IFSF Host-to-Host Interface financial transaction messages under ANSI X9.24 version 2004 and ANSI X9.24 2009 encryption schemes.  
 
 IFSF Host-to-Host standard in an adaption of ISO 8583 mainly devised for fuel payment transactions, but also used in several other applications. 
