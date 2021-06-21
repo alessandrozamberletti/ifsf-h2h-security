@@ -7,6 +7,7 @@ import ansi.x9_24_2004.encryption.TripleDes;
 import ansi.x9_24_2004.mac.RetailMacFactory;
 import ansi.x9_24_2004.utils.CustomBitSet;
 
+import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
 
 public class IfsfSecurityFieldFactory {
@@ -36,6 +37,14 @@ public class IfsfSecurityFieldFactory {
     public String encryptRequestData2009(final String ksn, final String data) {
         final CustomBitSet x924version2009DataKey = dukptFactory.computeAnsiX924version2009DataKey(bdk, new CustomBitSet(ksn));
         final byte[] encryptedRequestData = tripleDes.encrypt(x924version2009DataKey, DatatypeConverter.parseHexBinary(data));
+
+        return DatatypeConverter.printHexBinary(encryptedRequestData);
+    }
+
+    // Sensitive data encryption using ANSI X9.24 2009 data key
+    public String encryptRequestData2009(final String ksn, final String data, IvParameterSpec iv) {
+        final CustomBitSet x924version2009DataKey = dukptFactory.computeAnsiX924version2009DataKey(bdk, new CustomBitSet(ksn));
+        final byte[] encryptedRequestData = tripleDes.encrypt(x924version2009DataKey, DatatypeConverter.parseHexBinary(data), false, iv);
 
         return DatatypeConverter.printHexBinary(encryptedRequestData);
     }

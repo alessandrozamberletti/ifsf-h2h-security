@@ -11,9 +11,15 @@ public interface Encryption {
     default byte[] encrypt(final CustomBitSet key,
                            final byte[] data,
                            final boolean padding) {
+        return encrypt(key, data, padding, new IvParameterSpec(new byte[8]));
+    }
+
+    default byte[] encrypt(final CustomBitSet key,
+                           final byte[] data,
+                           final boolean padding,
+                           final IvParameterSpec iv) {
         try {
             final SecretKey secretKey = getEncryptionKey(key);
-            final IvParameterSpec iv = new IvParameterSpec(new byte[8]);
             final Cipher cipher = getCipher(padding);
 
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
